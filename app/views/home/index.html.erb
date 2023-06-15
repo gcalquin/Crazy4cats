@@ -2,6 +2,18 @@
 
 <h1>Home#index</h1>
 
+<hr>
+
+<% if user_signed_in?%>
+
+    <%= render "publications/form", publication: @publication %>
+  
+<% end %>
+
+<hr>
+
+
+
 <div class="row">
 <% @publications.each do |publication| %>
 <div class="col-12 border border-info p-3 mt-2">
