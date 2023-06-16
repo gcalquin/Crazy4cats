@@ -1,5 +1,6 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: %i[ show edit update destroy ]
+  before_action :set_current_publication, only: [:likes]
 
   # GET /publications or /publications.json
   def index
@@ -59,6 +60,17 @@ class PublicationsController < ApplicationController
     end
   end
 
+
+  def likes
+    if @publication.is_liked?(current_user)
+      @publication.remove_like(current_user)
+    else
+      @publication.add_like(current_user)
+    end
+
+    redirect_to root_path
+  end 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_publication
@@ -66,7 +78,16 @@ class PublicationsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
+
+
+
+    def set_current_publication
+      @publication = Publication.find(params[:publication_id])
+    end
+
     def publication_params
       params.require(:publication).permit(:content, :user_id)
     end
+    
+
 end

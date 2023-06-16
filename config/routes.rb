@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :publications
+  resources :publications do
+    post 'likes', to: 'publications#likes'
+  end
+
+
+
   devise_for :users
   get 'home/index'
 
