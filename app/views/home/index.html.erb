@@ -22,9 +22,9 @@
     <div class="float-right">
        <%= publication.likes.count %> 
        <% if publication.is_liked?(current_user) %>
-        <%= link_to '<p>Hizo Like</p>'.html_safe, publication_likes_path(publication), method: :post %> 
+        <%= link_to '<i class="far fa-heart text-danger"></i>'.html_safe, publication_likes_path(publication), data: { "turbo-method": :post } %> 
        <% else %>
-        <%= link_to '<p>NO Hizo Like</p>'.html_safe, publication_likes_path(publication), method: :post %> 
+        <%= link_to '<i class="fas fa-heart text-danger"></i>'.html_safe, publication_likes_path(publication), data: { "turbo-method": :post } %> 
        <% end %>
         
 

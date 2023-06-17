@@ -63,7 +63,7 @@ class PublicationsController < ApplicationController
 
   def likes
     if @publication.is_liked?(current_user)
-      @publication.remove_like(current_user)
+       @publication.remove_like(current_user)
     else
       @publication.add_like(current_user)
     end
